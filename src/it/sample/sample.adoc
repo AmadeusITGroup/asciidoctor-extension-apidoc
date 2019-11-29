@@ -1,0 +1,33 @@
+= asciidoctor-extension-apidoc
+
+* Class javadoc: java.lang.String
+* Nested class: java.util.Map.Entry
+
+Direct macro execution: apidoc:java.util.Map[]
+
+WARN: Explicit macro is mandatory for package javadoc: apidoc:java.util[], to limit false positives with URLs like http://java.net or property names like `java.someProperty`.
+
+It combines with other inline macros like literal macro: `java.lang.String`.
+
+The pass inline macro can be used to passthrough content: pass:[java.util.Map]
+
+[NOTE]
+====
+Existing explicit javadoc links will still work.
+
+* Fully qualified class link - https://docs.oracle.com/javase/10/docs/api/java/lang/String.html[java.util.String]
+* Any package link - https://docs.oracle.com/javase/10/docs/api/java/util/package-summary.html[java.util]
+====
+
+NOTE: code blocks are not impacted.
+
+.MyClass.java
+[source,java]
+----
+import java.util.HashMap;
+import java.util.Map;
+
+public class MyClass {
+  java.util.String s;
+}
+----

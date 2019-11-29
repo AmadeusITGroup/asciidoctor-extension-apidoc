@@ -1,0 +1,28 @@
+# Eclipse project files
+.project
+.classpath
+.settings
+
+#IntelliJ project files
+.idea
+*.iml
+
+# Build targets
+**/target/
+**/bin/
+
+#Maven
+*.versionsBackup
+
+# cb-release-plugin
+cb-release.properties
+sf-build.properties
+
+# Mergetool
+*.orig
+
+#Markdown viewer
+*.md.html
+
+# Asciidoctor diagram caches
+.asciidoctor
