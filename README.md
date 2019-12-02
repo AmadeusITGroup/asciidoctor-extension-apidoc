@@ -21,7 +21,7 @@ Pre-requisites are Maven 3+ and JDK8+:
 
 > mvn install
 
-Willing to contribute ? Check [this guide](./CONTRIBURING.md) !
+Willing to contribute ? Check [this guide](./CONTRIBUTING.md) !
 
 ## Usage
 
