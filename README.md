@@ -1,5 +1,9 @@
 # asciidoctor-extension-apidoc
 
+[![Maven Central](https://img.shields.io/maven-central/v/com.amadeus.asciidoc/asciidoctor-extension-apidoc.svg)](https://search.maven.org/#search%7Cga%7C1%7Ccom.amadeus.asciidoc)
+[![Travis](https://img.shields.io/travis/com/AmadeusITGroup/asciidoctor-extension-apidoc.svg)](https://travis-ci.com/AmadeusITGroup/asciidoctor-extension-apidoc)
+[![GitHub license](https://img.shields.io/github/license/AmadeusITGroup/asciidoctor-extension-apidoc)](https://github.com/AmadeusITGroup/asciidoctor-extension-apidoc/blob/master/LICENSE)
+
 > Easily link to Javadoc from an Asciidoc user guide !
 
 This extension is an inline macro based on the idea of Ruby [ImplicitApidocInlineMacro extension](https://github.com/asciidoctor/asciidoctor-extensions-lab/blob/master/lib/implicit-apidoc-inline-macro.rb) from the asciidoctor-extensions-lab.
