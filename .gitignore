@@ -3,7 +3,7 @@
 .classpath
 .settings
 
-#IntelliJ project files
+# IntelliJ project files
 .idea
 *.iml
 
@@ -11,17 +11,15 @@
 **/target/
 **/bin/
 
-#Maven
+# Maven
 *.versionsBackup
-
-# cb-release-plugin
-cb-release.properties
-sf-build.properties
+*.releaseBackup
+release.properties
 
 # Mergetool
 *.orig
 
-#Markdown viewer
+# Markdown viewer
 *.md.html
 
 # Asciidoctor diagram caches
