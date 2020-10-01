@@ -172,3 +172,54 @@ is processed as:
 ```adoc
 link:https://docs.oracle.com/javase/8/docs/api/java/util/logging/package-summary.html[`java.util.logging`]
 ```
+
+### Relative URLs
+
+It can be convenient to use relative URLs when referencing some Javadoc from the project itself, 
+when it is hosted at the same place as the userguide.
+
+For instance:
+
+```
+https://my.company.com/docs/v1.0.0/userguide.html
+https://my.company.com/docs/v1.0.0/apidocs/index.html
+```
+
+```properties
+com.company.my=apidocs/
+```
+
+But when using other Asciidoctor backends like pdf, those relative links will be broken.
+
+To solve this, the attribute `apidocs_baseurl` configures the base URL to use for relative Javadoc URLs:
+
+```xml
+<plugin>
+  <groupId>org.asciidoctor</groupId>
+  <artifactId>asciidoctor-maven-plugin</artifactId>
+  <configuration>
+    <attributes>
+      <apidocs_config>apidoc.properties</apidocs_config>
+    </attributes>
+  </configuration>
+  <executions>
+     <execution>
+        <id>backend-html</id>
+        <configuration>
+            <backend>html5</backend>
+            <!-- Keep relative links, as HTML userguide will be hosted alongside the Javadoc -->
+        </configuration>
+     </execution>
+     <execution>
+        <id>backend-pdf</id>
+        <configuration>
+            <backend>pdf</backend>
+            <attributes>
+              <!-- Transform relative links into absolute URLs -->
+              <apidocs_baseurl>https://my.company.com/</apidocs_baseurl>
+            </attributes>        
+        </configuration>
+     </execution>
+  </executions>
+</plugin>
+```

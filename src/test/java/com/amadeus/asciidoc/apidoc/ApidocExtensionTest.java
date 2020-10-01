@@ -29,21 +29,21 @@ public class ApidocExtensionTest {
 
   private static Asciidoctor asciidoctor;
 
-  private static Map<String, Object> options = new HashMap<>();
+  private Map<String, Object> options = new HashMap<>();
 
-  private static Attributes attributes = new Attributes();
+  private Attributes attributes = new Attributes();
 
   private StubLogHandler logHandler = new StubLogHandler();
 
   @BeforeAll
   public static void setUpOnce() {
     asciidoctor = Asciidoctor.Factory.create(); // Slow, do it only once.
-    attributes.setAttribute(ImplicitApidocMacro.ATTRIBUTE_APIDOCS_CONFIG, "src/test/resources/apidoc.properties");
-    options = OptionsBuilder.options().attributes(attributes).asMap();
   }
 
   @BeforeEach
   public void setUp() {
+    attributes.setAttribute(ImplicitApidocMacro.ATTRIBUTE_APIDOCS_CONFIG, "src/test/resources/apidoc.properties");
+    options = OptionsBuilder.options().attributes(attributes).asMap();
     asciidoctor.registerLogHandler(logHandler);
   }
 
@@ -114,6 +114,16 @@ public class ApidocExtensionTest {
   }
 
   @Test
+  public void relativeLinksWithBaseUrl() {
+    attributes.setAttribute(ImplicitApidocMacro.ATTRIBUTE_APIDOCS_BASE_URL, "https://my.company.com/");
+    Map<String, Object> options = OptionsBuilder.options().attributes(attributes).asMap();
+
+    String output = asciidoctor.convert("com.company.my.Class", options);
+
+    assertEquals(block("<a href=\"https://my.company.com/apidocs/com/company/my/Class.html\">Class</a>"), output);
+  }
+
+  @Test
   public void passthroughShouldSkipMacro() {
     String output = asciidoctor.convert("pass:[com.company.my.Class]", options);
 
@@ -173,7 +183,7 @@ public class ApidocExtensionTest {
   }
 
   @Test
-  public void unkownPackageBaseApidocShouldSkipAndWarn() {
+  public void unknownPackageBaseApidocShouldSkipAndWarn() {
     String output = asciidoctor.convert("com.unknown.Class", options);
 
     assertEquals(block("com.unknown.Class"), output);

@@ -34,6 +34,8 @@ public class ImplicitApidocMacro extends InlineMacroProcessor {
 
   static final String ATTRIBUTE_APIDOCS_CONFIG = "apidocs_config";
 
+  static final String ATTRIBUTE_APIDOCS_BASE_URL = "apidocs_baseurl";
+
   /**
    * Packages are only lowercase. Assume there is at least 1 sub-package.
    */
@@ -60,15 +62,20 @@ public class ImplicitApidocMacro extends InlineMacroProcessor {
   @Override
   public Object process(ContentNode parent, String target, Map<String, Object> attributes) {
     LOG.log(Level.FINE, "Processing {0}", target);
+    Map<String, Object> documentAttributes = parent.getDocument().getAttributes();
 
     if (registry == null) {
-      String path = (String)parent.getDocument().getAttributes().get(ATTRIBUTE_APIDOCS_CONFIG);
+      String path = (String)documentAttributes.get(ATTRIBUTE_APIDOCS_CONFIG);
       registry = new ApidocRegistry(path);
     }
 
-    String baseUrl = registry.findBestMatch(target.replaceFirst("@", ""));
-    if (baseUrl != null) {
-      Link link = buildLink(baseUrl, target);
+    String url = registry.findBestMatch(target.replaceFirst("@", ""));
+    if (url != null) {
+      // Prefix relative URLs
+      if(!url.startsWith("http") && documentAttributes.get(ATTRIBUTE_APIDOCS_BASE_URL) != null){
+        url = documentAttributes.get(ATTRIBUTE_APIDOCS_BASE_URL) + url;
+      }
+      Link link = buildLink(url, target);
       return renderLink(parent, link, attributes);
     } else {
       // If single sub-package, assume it may be "filename.extension" and don't report a warning.
