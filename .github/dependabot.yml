@@ -13,9 +13,6 @@ updates:
   - dependency-name: org.mockito:mockito-junit-jupiter
     versions:
     - "> 3.3.3"
-  - dependency-name: org.asciidoctor:asciidoctorj
-    versions:
-    - 2.4.2
   - dependency-name: org.junit.jupiter:junit-jupiter-engine
     versions:
     - 5.7.0
