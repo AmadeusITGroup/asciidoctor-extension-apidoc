@@ -57,7 +57,7 @@
 
     <asciidoctorj.version>2.5.2</asciidoctorj.version>
 
-    <junit.jupiter.version>5.8.2</junit.jupiter.version>
+    <junit.jupiter.version>5.9.0</junit.jupiter.version>
     <junit.platform.version>1.8.2</junit.platform.version>
     <mockito.version>3.3.3</mockito.version>
     <hamcrest.version>2.2</hamcrest.version>
