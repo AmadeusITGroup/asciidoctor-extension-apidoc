@@ -148,7 +148,7 @@
       <!-- Integration testing via asciidoctor-maven-plugin -->
       <plugin>
         <artifactId>maven-invoker-plugin</artifactId>
-        <version>3.3.0</version>
+        <version>3.4.0</version>
         <configuration>
           <projectsDirectory>src/it</projectsDirectory>
           <cloneProjectsTo>${project.build.directory}/it</cloneProjectsTo>
