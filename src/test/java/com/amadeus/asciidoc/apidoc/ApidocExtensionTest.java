@@ -29,9 +29,9 @@ public class ApidocExtensionTest {
 
   private static Asciidoctor asciidoctor;
 
-  private Map<String, Object> options = new HashMap<>();
+  private Options options;
 
-  private Attributes attributes = new Attributes();
+  private Attributes attributes = Attributes.builder().build();
 
   private StubLogHandler logHandler = new StubLogHandler();
 
@@ -43,7 +43,7 @@ public class ApidocExtensionTest {
   @BeforeEach
   public void setUp() {
     attributes.setAttribute(ImplicitApidocMacro.ATTRIBUTE_APIDOCS_CONFIG, "src/test/resources/apidoc.properties");
-    options = OptionsBuilder.options().attributes(attributes).asMap();
+    options = Options.builder().attributes(attributes).build();
     asciidoctor.registerLogHandler(logHandler);
   }
 
@@ -116,7 +116,7 @@ public class ApidocExtensionTest {
   @Test
   public void relativeLinksWithBaseUrl() {
     attributes.setAttribute(ImplicitApidocMacro.ATTRIBUTE_APIDOCS_BASE_URL, "https://my.company.com/");
-    Map<String, Object> options = OptionsBuilder.options().attributes(attributes).asMap();
+    Options options = Options.builder().attributes(attributes).build();
 
     String output = asciidoctor.convert("com.company.my.Class", options);
 
@@ -200,7 +200,7 @@ public class ApidocExtensionTest {
 
   @Test
   public void renderExampleWithoutConfig() {
-    Options options = new Options();
+    Options options = Options.builder().build();
     options.setToFile("target/sample.html");
     asciidoctor.convertFile(new File("src/it/sample/sample.adoc"), options);
 
@@ -210,7 +210,7 @@ public class ApidocExtensionTest {
 
   @Test
   public void renderExample() {
-    Options options = OptionsBuilder.options().attributes(attributes).get();
+    Options options = Options.builder().attributes(attributes).build();
     options.setToFile("target/sample.html");
     asciidoctor.convertFile(new File("src/it/sample/sample.adoc"), options);
 

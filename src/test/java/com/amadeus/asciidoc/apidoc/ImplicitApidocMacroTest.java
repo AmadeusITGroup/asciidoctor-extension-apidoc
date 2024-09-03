@@ -1,5 +1,8 @@
 package com.amadeus.asciidoc.apidoc;
 
+import org.asciidoctor.Options;
+import org.asciidoctor.ast.PhraseNode;
+import org.asciidoctor.ast.StructuralNode;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
@@ -25,14 +28,14 @@ public class ImplicitApidocMacroTest {
   static ImplicitApidocMacro macro;
 
   @Mock
-  private ContentNode parent;
+  private StructuralNode parent;
 
   @Mock
   private Document document;
 
-  private final Attributes attributes = new Attributes();
+  private final Attributes attributes = Attributes.builder().build();
 
-  private final Map<String, Object> options = OptionsBuilder.options().asMap();
+  private final Map<String, Object> options = Options.builder().build().map();
 
   @BeforeEach
   public void setUp() {
@@ -46,7 +49,7 @@ public class ImplicitApidocMacroTest {
   @Disabled("#log requires a JRuby runtime")
   @Test
   public void unknownPackageShouldSkipProcessing() {
-    String output = (String)macro.process(parent, "com.unknown.Class", options);
+    String output = macro.process(parent, "com.unknown.Class", options).convert();
 
     assertEquals("com.unknown.Class", output);
   }
@@ -54,7 +57,7 @@ public class ImplicitApidocMacroTest {
   @Disabled("JRuby bugs when calling Inline#convert, see ImplicitApidocMacroAscidocTest instead")
   @Test
   public void relativeLinks() {
-    String output = (String)macro.process(parent, "com.company.my.Class", options);
+    String output = macro.process(parent, "com.company.my.Class", options).convert();
 
     assertEquals("<a href=\"apidocs/com/company/my/Class.html\">Class</a>", output);
   }

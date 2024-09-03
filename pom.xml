@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.amadeus.asciidoc</groupId>
   <artifactId>asciidoctor-extension-apidoc</artifactId>
-  <version>1.1-SNAPSHOT</version>
+  <version>2.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>asciidoctor-extension-apidoc</name>
@@ -55,7 +55,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-    <asciidoctorj.version>2.5.10</asciidoctorj.version>
+    <asciidoctorj.version>3.0.0</asciidoctorj.version>
 
     <junit.jupiter.version>5.10.0</junit.jupiter.version>
     <junit.platform.version>1.10.0</junit.platform.version>

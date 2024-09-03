@@ -10,6 +10,7 @@ import java.util.regex.Pattern;
 import org.apache.commons.lang3.StringUtils;
 import org.asciidoctor.ast.ContentNode;
 import org.asciidoctor.ast.PhraseNode;
+import org.asciidoctor.ast.StructuralNode;
 import org.asciidoctor.extension.Format;
 import org.asciidoctor.extension.FormatType;
 import org.asciidoctor.extension.InlineMacroProcessor;
@@ -60,7 +61,7 @@ public class ImplicitApidocMacro extends InlineMacroProcessor {
   private ApidocRegistry registry = null;
 
   @Override
-  public Object process(ContentNode parent, String target, Map<String, Object> attributes) {
+  public PhraseNode process(StructuralNode parent, String target, Map<String, Object> attributes) {
     LOG.log(Level.FINE, "Processing {0}", target);
     Map<String, Object> documentAttributes = parent.getDocument().getAttributes();
 
