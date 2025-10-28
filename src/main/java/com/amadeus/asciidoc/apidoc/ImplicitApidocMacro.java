@@ -84,8 +84,9 @@ public class ImplicitApidocMacro extends InlineMacroProcessor {
         log(new LogRecord(Severity.WARN,
             String.format(
                 "Unknown apidocs package: <%s>, no links will be generated."
-                    + " Add the package via %s attribute, report the false-positive or use passthrough macro.",
-                target, ATTRIBUTE_APIDOCS_CONFIG)));
+                    + " Add the package via %s attribute, report the false-positive"
+                    + " or use passthrough macro (`pass:[%s]`).",
+                target, ATTRIBUTE_APIDOCS_CONFIG, target)));
       }
       return renderText(parent, target, attributes); // skip
     }
